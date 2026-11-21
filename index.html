@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>INFINITE DRIVE 3D — Indian World Career Edition</title>
+<title>INFINITE DRIVE 3D — Endless Road, 30m Streetlights & Speed Breakers</title>
 <style>
 :root{--cyan:#61e7ff;--panel:rgba(5,12,22,.84);--line:rgba(255,255,255,.15)}
 *{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#09121c;color:#f5f9ff;font-family:Inter,system-ui,Arial,sans-serif}
@@ -16,7 +16,7 @@
 .overlay{position:fixed;z-index:5;left:50%;top:50%;transform:translate(-50%,-50%);width:min(590px,calc(100vw - 26px));max-height:90vh;overflow:auto;text-align:center;padding:23px;pointer-events:auto}
 h1{font-size:clamp(28px,5vw,46px);margin:5px 0 8px;letter-spacing:-1.5px}.accent{color:var(--cyan)}p{color:#aec0d1;line-height:1.55;font-size:14px}
 button{border:1px solid #40596f;background:#14283c;color:#f6fbff;border-radius:10px;padding:10px 13px;font:inherit;cursor:pointer}button:hover{border-color:var(--cyan)}.primary{background:linear-gradient(120deg,#078ea9,#286be4);border:0;font-weight:800;padding:13px 20px}
-.garage{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:17px 0}.carChoice{padding:11px 7px;border:1px solid var(--line);border-radius:12px;background:#0c1a29;cursor:pointer}.carChoice.active{border-color:var(--cyan);box-shadow:inset 0 0 0 1px var(--cyan)}.carSwatch{height:28px;width:53px;border-radius:8px;margin:0 auto 8px;box-shadow:inset 0 2px 5px #fff8,0 5px 12px #0008;transform:skewX(-10deg)}.carChoice b{display:block;font-size:12px}.carChoice small{font-size:10px;color:#92a9be}.row{display:flex;justify-content:center;gap:8px;flex-wrap:wrap}.hidden{display:none!important}
+.garage{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:17px 0}.carChoice{padding:11px 7px;border:1px solid var(--line);border-radius:12px;background:#0c1a29;cursor:pointer}.carChoice.active{border-color:var(--cyan);box-shadow:inset 0 0 0 1px var(--cyan)}.carPoster{width:100%;aspect-ratio:5/3;border-radius:8px;margin:0 auto 8px;background:linear-gradient(160deg,#0f2136 0%,#0a1828 55%,#050b13 100%);overflow:hidden;position:relative}.carPoster canvas{width:100%;height:100%;display:block}.carPoster img{width:100%;height:100%;object-fit:cover;display:block}.carPoster .carPosterFallback{position:absolute;inset:0;display:flex;align-items:flex-end;justify-content:center;padding:6px;background:linear-gradient(110deg,#1115,${'#'}fff8)}.carSwatch{height:28px;width:53px;border-radius:8px;margin:0 auto 8px;box-shadow:inset 0 2px 5px #fff8,0 5px 12px #0008;transform:skewX(-10deg)}.carChoice b{display:block;font-size:12px}.carChoice small{font-size:10px;color:#92a9be}.row{display:flex;justify-content:center;gap:8px;flex-wrap:wrap}.hidden{display:none!important}
 #loading{position:fixed;inset:0;z-index:8;display:grid;place-items:center;background:#09121c;color:#c7eaff;letter-spacing:2px;font-weight:700}
 .mobile{position:fixed;z-index:3;bottom:18px;left:0;right:0;display:none;justify-content:space-between;padding:0 14px;pointer-events:none}.mobile button{pointer-events:auto;width:53px;height:53px;border-radius:50%;background:#07111dcf;font-size:19px}.mobile .right{display:flex;gap:6px}.mobile .boost{border-color:#4ce6b8;color:#4ce6b8}
 @media(max-width:700px){#lightControls{top:66px;right:9px}#lightControls button{font-size:10px;padding:7px 8px}#challengeHud{top:94px!important;left:9px!important;min-width:160px;padding:8px 10px!important}#challengeDesc{max-width:190px}.hud{padding:9px}.stats{gap:9px;padding:9px}.stat b{font-size:14px}.stat label{font-size:8px}.brand{padding:9px}.hint{display:none}.mobile{display:flex}.bottom{margin-bottom:76px}.garage{grid-template-columns:repeat(2,1fr)}}
@@ -33,17 +33,87 @@ button{border:1px solid #40596f;background:#14283c;color:#f6fbff;border-radius:1
 #adventureHud{top:318px}
 #adventureModal{z-index:7}
 @media(max-width:700px){#adventureHud{top:430px;left:8px;padding:7px 9px;font-size:9px;max-width:170px}}
+
+/* Responsive layout: compact HUD and on-demand options for tablets and phones */
+#mobileMenuToggle{display:none;position:fixed;z-index:9;top:12px;left:12px;padding:10px 13px;border-radius:12px;background:rgba(5,16,28,.94);border:1px solid rgba(97,231,255,.55);font-size:12px;font-weight:800;box-shadow:0 6px 20px #0007}
+@media (min-width:701px) and (max-width:1024px){
+ .hud{padding:12px}
+ .brand{padding:9px 11px}
+ .brand b{font-size:12px}
+ .brand small{font-size:9px}
+ .stats{gap:10px;padding:9px 11px}
+ .stat b{font-size:15px}
+ #careerHud{top:160px;left:12px;font-size:9px;padding:7px 9px}
+ #roadRulesHud{top:160px;right:12px;font-size:9px;padding:7px 9px}
+ #adventureHud{top:275px!important;left:12px!important;font-size:9px!important;padding:7px 9px!important}
+ #featureConsole{left:12px;bottom:100px;max-width:calc(100vw - 24px);gap:5px}
+ #featureConsole button{font-size:9px;padding:7px 8px}
+}
+@media (max-width:700px){
+ #mobileMenuToggle{display:block}
+ #featureConsole{display:none;left:10px;right:10px;top:58px;bottom:auto;max-width:none;max-height:54vh;overflow-y:auto;padding:9px;background:rgba(3,10,18,.94);border:1px solid rgba(97,231,255,.35);border-radius:14px;z-index:8}
+ #featureConsole.mobile-open{display:flex}
+ #featureConsole button{flex:1 1 calc(50% - 6px);min-height:39px;font-size:10px;padding:8px 6px}
+ .hud{padding:8px;pointer-events:none}
+ .top{justify-content:flex-end;gap:6px}
+ .brand{display:none}
+ .stats{gap:0;padding:7px 10px;border-radius:11px;margin-left:auto}
+ .stat{display:none}
+ .stat:first-child{display:block}
+ .stat label{font-size:8px}
+ .stat b{font-size:17px}
+ .bottom{display:none}
+ #careerHud,#roadRulesHud,#adventureHud,#challengeHud,#lightControls{display:none!important}
+ #featureToast{top:15%;max-width:calc(100vw - 28px);text-align:center;font-size:11px}
+ .mobile{display:flex;bottom:max(12px,env(safe-area-inset-bottom));padding:0 12px;align-items:flex-end}
+ .mobile button{width:clamp(46px,13vw,58px);height:clamp(46px,13vw,58px);font-size:18px;touch-action:none}
+ .mobile .right{gap:7px}
+ .overlay{width:calc(100vw - 20px);max-height:84dvh;padding:16px 13px;border-radius:14px}
+ h1{font-size:clamp(23px,7vw,34px)}
+ p{font-size:12px}
+ .garage{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;margin:10px 0}
+ .carChoice{padding:9px 5px}
+ .row button{font-size:11px;padding:9px 10px}
+ #adventureModal .row button{flex:1 1 42%}
+}
+@media (max-width:380px){
+ .mobile{padding:0 7px}
+ .mobile button{width:44px;height:44px;font-size:16px}
+ #featureConsole button{flex-basis:100%}
+ .overlay{padding:13px 10px}
+}
+@media (max-height:500px) and (max-width:900px){
+ .mobile{bottom:5px}
+ .mobile button{width:42px;height:42px}
+ .overlay{max-height:78dvh;padding:10px}
+ #featureConsole{max-height:45vh}
+}
+
 </style>
 </head>
 <body>
 
 <div id="featureConsole">
  <button id="policeBtn">🚨 POLICE: OFF</button><button id="mapBtn">🏔 MAP: CITY</button>
- <button id="houseBtn">🏠 MY GARAGE</button><button id="marketBtn">💰 MARKET</button>
- <button id="workshopBtn">🔧 WORKSHOP</button><button id="raceBtn">🏁 RIVAL: OFF</button>
- <button id="replayBtn">🎬 REPLAY CAM</button><button id="leftSignalBtn">⬅ INDICATOR</button><button id="rightSignalBtn">INDICATOR ➡</button><button id="hornBtn">📣 HORN</button><button id="adventureBtn">🎮 ADVENTURE HUB</button>
+ <button id="houseBtn">🏠 MY GARAGE</button><button id="unlocksBtn">🏆 UNLOCKS</button>
+ <button id="workshopBtn">🔧 WORKSHOP</button><button id="raceBtn">🏁 RIVAL: OFF</button><button id="multiplayerBtn">🌐 MULTIPLAYER</button>
+ <button id="replayBtn">🎬 REPLAY CAM</button><button id="leftSignalBtn">⬅ INDICATOR</button><button id="rightSignalBtn">INDICATOR ➡</button><button id="hornBtn">📣 HORN</button><button id="careerBtn">📊 CAREER</button><button id="adventureBtn">🎮 ADVENTURE HUB</button>
 </div>
-<div id="careerHud">⭐ XP: <b id="xpText">0</b> · CASH: ₹<b id="cashText">50000</b><br>🏆 CAREER LEVEL: <b id="careerLevel">1</b> · GEAR: <b id="gearText">1</b> · RPM: <b id="rpmText">900</b></div>
+<div id="careerModal" class="overlay hidden">
+ <div class="accent" style="font-size:10px;letter-spacing:3px">DRIVER PROGRESSION</div>
+ <h1>CAREER <span class="accent">LEVEL <span id="careerModalLevel">1</span></span></h1>
+ <p id="careerModalRank">Rookie Driver</p>
+ <div style="background:#0c1a29;border:1px solid #244;border-radius:12px;padding:14px;margin:12px 0">
+  <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:6px"><span>XP Progress</span><b id="careerModalXp">0 / 500</b></div>
+  <div style="height:10px;background:#1a2b3c;border-radius:8px;overflow:hidden"><div id="careerModalBar" style="height:100%;width:0;background:linear-gradient(90deg,#54edbc,#61e7ff)"></div></div>
+  <div id="careerModalNext" style="font-size:11px;color:#9db3c8;margin-top:8px">Next reward: —</div>
+ </div>
+ <div id="careerModalRewards" style="background:#0c1a29;border:1px solid #244;border-radius:12px;padding:12px;margin:8px 0;font-size:12px;line-height:1.7;max-height:30vh;overflow:auto"></div>
+ <div id="careerModalPerks" style="background:#0c1a29;border:1px solid #244;border-radius:12px;padding:12px;margin:8px 0;font-size:12px;line-height:1.6"></div>
+ <div class="row"><button id="careerClose">CLOSE</button></div>
+</div>
+<button id="mobileMenuToggle" aria-label="Open game options" aria-expanded="false">☰ MENU</button>
+<div id="careerHud">⭐ XP: <b id="xpText">0</b> · 🚗 OWNED: <b id="ownedText">1/11</b><br>🏆 CAREER LEVEL: <b id="careerLevel">1</b> · GEAR: <b id="gearText">1</b> · RPM: <b id="rpmText">900</b></div>
 <div id="featureToast"></div>
 <div id="adventureHud" style="position:fixed;z-index:3;left:16px;top:318px;background:rgba(5,12,22,.82);border:1px solid rgba(255,255,255,.16);border-radius:12px;padding:9px 12px;font-size:10px;line-height:1.8;pointer-events:none;max-width:220px">🧭 EVENT: <b id="eventName">Free Roam</b><br>💎 TREASURES: <b id="treasureCount">0 / 12</b><br>🏁 CHAMPIONSHIP: <b id="champText">ROUND 1 / 5</b></div>
 <div id="adventureModal" class="overlay hidden"><div class="accent" style="font-size:10px;letter-spacing:3px">YOUR NEXT ADVENTURE</div><h1>ADVENTURE <span class="accent">HUB</span></h1><p>Choose a goal, earn rewards and build your driver career. Progress is saved on this device.</p><div class="row"><button id="storyBtn" class="primary">📖 STORY MODE</button><button id="treasureBtn">💎 TREASURE HUNT</button></div><div class="row" style="margin-top:8px"><button id="stuntBtn">🔥 STUNT CHALLENGE</button><button id="champBtn">🏆 CHAMPIONSHIP</button></div><div id="adventureInfo" style="margin:13px 0;background:#10283b;padding:12px;border-radius:12px;text-align:left;font-size:12px;line-height:1.7">Select a mode to begin.</div><div class="row"><button id="adventureStart" class="primary">START SELECTED MODE</button><button id="adventureClose">CLOSE</button></div></div>
@@ -68,16 +138,54 @@ button{border:1px solid #40596f;background:#14283c;color:#f6fbff;border-radius:1
  <div style="height:5px;background:#26384b;border-radius:6px;margin-top:8px;overflow:hidden"><div id="challengeBar" style="height:100%;width:0;background:linear-gradient(90deg,#54edbc,#61e7ff)"></div></div>
  <div id="challengeProgress" style="font-size:10px;color:#9db3c8;margin-top:5px">0 / 1</div>
 </div>
-<div id="menu" class="overlay"><div class="accent" style="font-size:10px;letter-spacing:3px;font-weight:800">A NEW DIMENSION OF DRIVING</div><h1>INFINITE <span class="accent">DRIVE 3D</span></h1><p>Explore an Indian city and highway, customize 10 vehicles, dodge autos, buses and trucks, manage fuel and vehicle condition, and complete driving missions.</p><div class="garage" id="garage"></div>
+<div id="menu" class="overlay"><div class="accent" style="font-size:10px;letter-spacing:3px;font-weight:800">A NEW DIMENSION OF DRIVING</div><h1>INFINITE <span class="accent">DRIVE 3D</span></h1><p>Explore an Indian city and highway, drive 11 vehicles, dodge autos, buses and trucks, manage fuel and vehicle condition, and unlock new cars by completing driving milestones — no purchases, just skill.</p><div class="garage" id="garage"></div>
 <div style="font-size:10px;color:#9eb4c8;letter-spacing:2px;margin:8px 0">CUSTOMIZE YOUR CAR</div><div class="row" id="paintPicker"><button data-paint="0x202a35">MIDNIGHT</button><button data-paint="0xe52b32">RED</button><button data-paint="0xf0f0e8">WHITE</button><button data-paint="0x1767c5">BLUE</button><button data-paint="0x19a66a">GREEN</button><button data-paint="0xffbd24">YELLOW</button></div>
-<div class="row" style="margin-top:9px"><button id="weatherBtn">🌧 WEATHER: CLEAR</button><button id="missionBtn">🎯 MISSION: FREE DRIVE</button></div><div style="margin:12px 0 5px;color:#9eb4c8;font-size:10px;letter-spacing:2px">SELECT DIFFICULTY</div><div class="row" id="difficulty"><button data-diff="easy">EASY</button><button data-diff="normal" class="primary">NORMAL</button><button data-diff="hard">HARD</button></div><div class="row" style="margin-top:12px"><button class="primary" id="start">START ENGINE →</button><button id="how">CONTROLS</button></div><p id="help" class="hidden">W / ↑ accelerate · S / ↓ brake · A / D or ← / → steer · SPACE handbrake drift · SHIFT nitro · Q/E indicators · J horn. Use the garage to select cars and paint colours. Q/E indicators · J horn · obey traffic signals and speed limits. Weather, missions, fuel, damage, police patrol, garage, market, workshop, rival AI and career progression are included. Reach 10 km to finish all 10 levels.</p><p style="font-size:10px">Player boarding animation · ignition sequence · detailed 3D environment · WebGL</p></div>
+<div class="row" style="margin-top:9px"><button id="weatherBtn">🌧 WEATHER: CLEAR</button><button id="missionBtn">🎯 MISSION: FREE DRIVE</button></div><div style="margin:12px 0 5px;color:#9eb4c8;font-size:10px;letter-spacing:2px">SELECT DIFFICULTY</div><div class="row" id="difficulty"><button data-diff="easy">EASY</button><button data-diff="normal" class="primary">NORMAL</button><button data-diff="hard">HARD</button></div><div class="row" style="margin-top:12px"><button class="primary" id="start">START ENGINE →</button><button id="how">CONTROLS</button></div><p id="help" class="hidden">W / ↑ accelerate · S / ↓ brake · A / D or ← / → steer · SPACE handbrake drift · SHIFT nitro · Q/E indicators · J horn. Use the garage to select cars and paint colours. Q/E indicators · J horn · obey traffic signals and speed limits. Weather, missions, fuel, damage, police patrol, garage, milestone unlocks, workshop, rival AI and career progression are included. Reach 10 km to finish all 10 levels.</p><p style="font-size:10px">Player boarding animation · ignition sequence · detailed 3D environment · WebGL</p></div>
 <div id="result" class="overlay hidden"><div class="accent" style="letter-spacing:3px;font-size:10px">DRIVE REPORT</div><h1 id="resultTitle">RUN OVER</h1><p id="resultText"></p><div class="row"><button class="primary" id="again">DRIVE AGAIN</button><button id="changeCar">CHANGE CAR</button></div></div>
 <div class="mobile"><div><button id="left">◀</button><button id="right">▶</button></div><div class="right"><button id="drift">↻</button><button id="boost" class="boost">⚡</button><button id="gas">▲</button><button id="brake">▼</button></div></div>
+<div id="mpModal" class="overlay hidden"><div class="accent" style="letter-spacing:3px;font-size:10px">ONLINE RACING</div><h1>MULTI<span class="accent">PLAYER</span></h1><p id="mpStatus">Connect with friends in a live room.</p><div class="row"><button class="primary" id="mpCreate">CREATE ROOM</button><button id="mpJoin">JOIN ROOM</button></div><div style="margin:12px auto;max-width:300px"><input id="mpRoomCode" placeholder="ROOM CODE" maxlength="6" style="width:100%;padding:13px;border-radius:9px;background:#0c1a29;color:white;border:1px solid #456;text-align:center;text-transform:uppercase;font-size:20px;letter-spacing:4px"></div><div class="row"><button id="mpCopy">COPY ROOM CODE</button><button id="mpLeave">LEAVE ROOM</button><button id="mpClose">CLOSE</button></div><div id="mpPlayers" style="text-align:left;font-size:12px;margin-top:12px;color:#c6d8e8"></div></div>
 <script type="module">
 import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js';
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
+import { getAuth, signInAnonymously } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
+import { getDatabase, ref, set, onValue, onDisconnect, remove, get, update as dbUpdate } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js';
+const firebaseConfig={apiKey:'AIzaSyAMf4ZLtL8uKcMuAwuB4tz-1EBluA8WnJE',authDomain:'infinite-drive-3d.firebaseapp.com',databaseURL:'https://infinite-drive-3d-default-rtdb.asia-southeast1.firebasedatabase.app',projectId:'infinite-drive-3d',storageBucket:'infinite-drive-3d.firebasestorage.app',messagingSenderId:'195016727039',appId:'1:195016727039:web:be57dc05852badc31c6fca',measurementId:'G-NTJ6TY37RH'};
+const fbApp=initializeApp(firebaseConfig),fbAuth=getAuth(fbApp),fbDb=getDatabase(fbApp);
+let mpUid=null,mpRoom=null,mpUnsub=null,mpSendTimer=null,mpCars={};
+try{const cred=await signInAnonymously(fbAuth);mpUid=cred.user.uid;}catch(e){console.warn('Firebase sign-in:',e);}
+
 
 const $=id=>document.getElementById(id);
+const mpStatus=(t)=>{if($('mpStatus'))$('mpStatus').textContent=t;};
+function mpOpen(){ $('mpModal').classList.remove('hidden');mpStatus(mpUid?'Ready. Create a room or join with a code.':'Firebase sign-in failed. Check Anonymous Authentication.'); }
+function mpRender(players){
+ const list=players||{};const names=Object.values(list).sort((a,b)=>(b.distance||0)-(a.distance||0));
+ $('mpPlayers').innerHTML='<b>LIVE PLAYERS ('+names.length+')</b><br>'+names.map((v,i)=>(i+1)+'. '+String(v.name||'Driver').replace(/[<>&]/g,'')+' — '+Number(v.distance||0).toFixed(2)+' km · '+Math.round(v.speed||0)+' km/h').join('<br>');
+ const alive=new Set(Object.keys(list));
+ for(const id of Object.keys(mpCars)){if(!alive.has(id)){scene?.remove(mpCars[id]);delete mpCars[id];}}
+ if(!scene)return;
+ for(const [id,v] of Object.entries(list)){if(id===mpUid)continue; if(!mpCars[id]){mpCars[id]=createCar(0x22c9ee);scene.add(mpCars[id]);} const gap=(Number(v.distance||0)-dist)*3600;mpCars[id].position.set(Math.max(-10,Math.min(10,Number(v.x)||0)),0,player?player.position.z-gap:3-gap);mpCars[id].rotation.y=0;}
+}
+async function mpCreateRoom(){
+ if(!mpUid){mpStatus('Sign-in not ready. Reload the page and try again.');return;}
+ const code=Math.random().toString(36).slice(2,8).toUpperCase();await set(ref(fbDb,'rooms/'+code+'/info'),{createdAt:Date.now(),host:mpUid,status:'racing'});await mpJoinRoom(code);
+}
+async function mpJoinRoom(code){
+ code=(code||'').trim().toUpperCase();if(!/^[A-Z0-9]{6}$/.test(code)){mpStatus('Enter a valid 6-character room code.');return;}
+ if(!mpUid){mpStatus('Anonymous sign-in is not ready.');return;}
+ const snap=await get(ref(fbDb,'rooms/'+code+'/info'));if(!snap.exists()){mpStatus('Room not found. Check the code.');return;}
+ await mpLeaveRoom();mpRoom=code;$('mpRoomCode').value=code;
+ const playerRef=ref(fbDb,'rooms/'+code+'/players/'+mpUid);
+ await set(playerRef,{name:'Driver-'+mpUid.slice(0,4),speed:0,distance:0,x:0,joinedAt:Date.now()});onDisconnect(playerRef).remove();
+ mpUnsub=onValue(ref(fbDb,'rooms/'+code+'/players'),snap=>mpRender(snap.val()||{}),err=>mpStatus('Room read error: '+err.message));
+ mpSendTimer=setInterval(()=>{if(!mpRoom||!mpUid||!player||!running)return;update(ref(fbDb,'rooms/'+mpRoom+'/players/'+mpUid),{speed:Math.round(speed*.72),distance:Number(dist.toFixed(4)),x:Number(player.position.x.toFixed(2)),updatedAt:Date.now()}).catch(e=>mpStatus('Sync error: '+e.message));},250);
+ mpStatus('Connected to room '+code+'. Share the code with friends!');
+}
+async function mpLeaveRoom(){if(mpSendTimer){clearInterval(mpSendTimer);mpSendTimer=null;}if(mpUnsub){mpUnsub();mpUnsub=null;}if(mpRoom&&mpUid){await remove(ref(fbDb,'rooms/'+mpRoom+'/players/'+mpUid)).catch(()=>{});}mpRoom=null;for(const c of Object.values(mpCars))scene?.remove(c);mpCars={};$('mpPlayers').textContent='Not in a room.';mpStatus('You left the room.');}
+$('multiplayerBtn').onclick=mpOpen;$('mpClose').onclick=()=>$('mpModal').classList.add('hidden');$('mpCreate').onclick=()=>mpCreateRoom().catch(e=>mpStatus('Could not create room: '+e.message));$('mpJoin').onclick=()=>mpJoinRoom($('mpRoomCode').value).catch(e=>mpStatus('Could not join: '+e.message));$('mpLeave').onclick=()=>mpLeaveRoom();$('mpCopy').onclick=()=>{const c=$('mpRoomCode').value;if(c)navigator.clipboard?.writeText(c).then(()=>mpStatus('Room code copied: '+c)).catch(()=>mpStatus('Room code: '+c));};
+
 const carSpecs=[
+ {name:'Audi A6 S-Line',sub:'Luxury Sedan • 250 km/h',type:'audi',color:0xe52b32,max:250,acc:1.30,handling:.95},
  {name:'BMW X7 M Sport',sub:'Luxury SUV • 250 km/h',type:'bmw',color:0x202a35,max:250,acc:1.18,handling:1.02},
  {name:'Toyota Fortuner',sub:'Power SUV • 210 km/h',type:'fortuner',color:0x202020,max:210,acc:1.02,handling:1.12},
  {name:'Mahindra Thar 4×4',sub:'Off-road • 185 km/h',type:'thar',color:0x1e633e,max:185,acc:.92,handling:1.28},
@@ -89,13 +197,49 @@ const carSpecs=[
  {name:'City Bus',sub:'Public Transport • 110 km/h',type:'fortuner',color:0xe0a52d,max:110,acc:.62,handling:1.48},
  {name:'Heavy Truck',sub:'Long Haul • 125 km/h',type:'fortuner',color:0x2f7b91,max:125,acc:.7,handling:1.42}
 ];
+// ---- Milestone-based car unlocks (replaces cash purchases) ------------------
+// Persistent driving bests. Each car (except the starter) unlocks when the
+// player completes a specific driving milestone — no cash, no shop, no grind.
+let totalDistance=0, topSpeed=0, bestDrift=0, bestOvertakes=0;
+const CAR_MILESTONES=[
+ {car:0,label:'Available from the start',check:()=>true},
+ {car:1,label:'Drive 1 km in total',check:()=>totalDistance>=1},
+ {car:2,label:'Reach 150 km/h top speed',check:()=>topSpeed>=150},
+ {car:3,label:'Earn 300 drift points in one run',check:()=>bestDrift>=300},
+ {car:4,label:'Collect 6 treasure tokens',check:()=>treasures>=6},
+ {car:5,label:'Reach 250 km/h top speed',check:()=>topSpeed>=250},
+ {car:6,label:'5 clean overtakes in one run',check:()=>bestOvertakes>=5},
+ {car:7,label:'Drive 3 km in total',check:()=>totalDistance>=3},
+ {car:8,label:'Earn 700 drift points in one run',check:()=>bestDrift>=700},
+ {car:9,label:'Complete Story chapter 2',check:()=>storyStep>=2},
+ {car:10,label:'Win a championship round',check:()=>championshipWins>=1}
+];
+// Runs every frame while driving; unlocks any car whose milestone was just met.
+function checkMilestones(){for(const m of CAR_MILESTONES){if(!ownedCars[m.car]&&m.check()){ownedCars[m.car]=true;saveProgress();buildGarage();toast('🚗 UNLOCKED: '+carSpecs[m.car].name+'!  '+m.label);}}}
+function ownedCount(){return ownedCars.filter(Boolean).length;}
 let selected=0,customColor=null,fuel=100,damage=100,weather='CLEAR',rainDrops=[],missionMode=0,missionCount=0,scene,camera,renderer,clock,player,playerWheels=[],traffic=[],roadSegments=[],decor=[],particles=[];
 let isNight=false,headlightsOn=true,headlightSpots=[],hemiLight=null,sunLight=null,fillLight=null;
+let speedBreakers=[];
 let difficulty='normal';
-let policeActive=false, mapMode='CITY', rivalActive=false, xp=0, cash=50000, careerLevel=1, gear=1, rpm=900, houseBuilt=false, workshopBoost=0, replayOn=false, policeCar=null, rivalCar=null, pedestrians=[], tollGates=[], currentToastTimer=null;
+let policeActive=false, mapMode='CITY', rivalActive=false, xp=0, careerLevel=1, gear=1, rpm=900, houseBuilt=false, workshopBoost=0, replayOn=false, policeCar=null, rivalCar=null, pedestrians=[], tollGates=[], currentToastTimer=null;
+// ---- Progression Mode state ----
+// XP needed for each of the 10 career levels. Level N is reached at
+// (N-1)*XP_PER_LEVEL XP. Level 10 (Legend) is the cap.
+const XP_PER_LEVEL=500, MAX_CAREER_LEVEL=10;
+// Cars the player owns. The starter Audi (index 0) is owned from the start;
+// the rest are unlocked either by reaching a career level (free reward) or by
+// buying them in the Car Market.
+let ownedCars=[true,false,false,false,false,false,false,false,false,false,false];
+// Player-chosen perks. Each perk has levels 0..3 bought with perk points; applying
+// them gives small gameplay bonuses (nitro capacity, fuel efficiency, crash
+// resistance, bonus XP).
+let perks={nitro:0,fuel:0,armor:0,booster:0};
+// Highest career level whose level-up reward we have already handed out, so
+// the reward fires exactly once per level even if updateCareer() runs often.
+let lastRewardedLevel=1;
 let signalRig=null,signalBulbs=[],signalStopLine=null,signalClock=0,signalState='GREEN',signalPassed=false;
 let indicator='OFF',indicatorClock=0,overspeedClock=0,lastFineAt=0,citySpeedLimit=80,hornAudio=null;
-let adventureMode='FREE',treasureTokens=[],treasures=0,eventClock=0,eventRemaining=0,eventType='',eventTarget=0,eventProgress=0,eventActive=false,championshipRound=1,championshipWins=0,storyStep=0,stuntScore=0,airTime=0,saveData={xp:0,cash:50000,treasures:0,wins:0,story:0};
+let adventureMode='FREE',treasureTokens=[],treasures=0,eventClock=0,eventRemaining=0,eventType='',eventTarget=0,eventProgress=0,eventActive=false,championshipRound=1,championshipWins=0,storyStep=0,stuntScore=0,airTime=0,saveData={xp:0,totalDistance:0,topSpeed:0,bestDrift:0,bestOvertakes:0,treasures:0,wins:0,story:0,ownedCars:[true],perks:{nitro:0,fuel:0,armor:0,booster:0},lastRewardedLevel:1};
 
 const difficultySettings={easy:{trafficRate:1.55,trafficSpeed:.72,steerAssist:1.18,edgePenalty:.55,label:'EASY'},normal:{trafficRate:1,trafficSpeed:1,steerAssist:1,edgePenalty:1,label:'NORMAL'},hard:{trafficRate:.62,trafficSpeed:1.55,steerAssist:.68,edgePenalty:1.9,label:'HARD'}};
 let running=false,ended=false,speed=0,dist=0,level=1,nitro=100,steer=0,worldDistance=0,drifting=false,boosting=false,driftScore=0,spawnTimer=0,curve=0,curveTarget=0,curveTimer=0;
@@ -119,7 +263,24 @@ const mat=(color,rough=.7,metal=0)=>new THREE.MeshStandardMaterial({color,roughn
 const mats={road:mat(0x30343a,.93),lane:mat(0xe8e7dc),edge:mat(0xe4e2d8),grass:[mat(0x355b3c),mat(0x426b43),mat(0x2d5036)],trunk:mat(0x59422e),leaves:[mat(0x28543a),mat(0x356b43),mat(0x477b49)],glass:mat(0x243e50,.2,.3),rubber:mat(0x101317,.95),rim:mat(0xbcc8cc,.28,.8),chrome:mat(0xb4c0c6,.25,.75),white:mat(0xffffff,.3),yellow:mat(0xffd35a,.3),red:mat(0xf43d42,.35)};
 function buildGarage(){
  $('garage').innerHTML='';
- carSpecs.forEach((c,i)=>{let d=document.createElement('div');d.className='carChoice'+(i===selected?' active':'');d.innerHTML=`<div class="carSwatch" style="background:linear-gradient(110deg,#1115,${'#'+c.color.toString(16).padStart(6,'0')},#fff8)"></div><b>${c.name}</b><small>${c.sub}</small>`;d.onclick=()=>{selected=i;buildGarage()};$('garage').appendChild(d)});
+ carSpecs.forEach((c,i)=>{
+  const owned=ownedCars[i]===true;
+  const m=CAR_MILESTONES[i];
+  const d=document.createElement('div');d.className='carChoice'+(i===selected?' active':'')+(owned?'':' locked');
+  const hex='#'+c.color.toString(16).padStart(6,'0');
+  // start with a colour placeholder; the real 3D poster is filled in
+  // asynchronously (see renderCarPosters below) so building the garage
+  // never blocks on WebGL during page load.
+  const lockBadge=owned?'':'<div style="position:absolute;top:4px;right:6px;font-size:9px;color:#61e7ff;text-shadow:0 1px 3px #000;background:rgba(5,12,22,.72);padding:2px 5px;border-radius:6px">🔒 '+m.label+'</div>';
+  d.innerHTML=`<div class="carPoster"><div class="carPosterFallback" style="background:linear-gradient(110deg,#1115,${hex},#fff8)"></div>${lockBadge}</div><b>${c.name}</b><small>${c.sub}</small>${owned?'':'<small style="color:#5b7186;display:block">Locked · complete the milestone</small>'}`;
+  d.style.opacity=owned?'1':'.6';
+  d.onclick=()=>{
+   if(!owned){toast('Locked — complete this milestone: '+m.label);return;}
+   selected=i;buildGarage();renderCarPosters();
+  };
+  $('garage').appendChild(d);
+ });
+ renderCarPosters();
 }
 buildGarage();
 document.querySelectorAll('[data-diff]').forEach(b=>b.onclick=()=>{difficulty=b.dataset.diff;document.querySelectorAll('[data-diff]').forEach(x=>{x.classList.toggle('primary',x.dataset.diff===difficulty)});});
@@ -151,8 +312,8 @@ function createCar(color=0x202a35,trafficCar=false){
  const chrome=new THREE.MeshStandardMaterial({color:0xb9c4cc,metalness:.9,roughness:.2});
  const lamp=new THREE.MeshStandardMaterial({color:0xf5fbff,emissive:0xcde8ff,emissiveIntensity:1.7});
  const tail=new THREE.MeshStandardMaterial({color:0xff1828,emissive:0x8d0010,emissiveIntensity:1.5});
- const tractor=type==='tractor',thar=type==='thar',fort=type==='fortuner',bmw=type==='bmw';
- const length=tractor?4.5:4.25, width=tractor?1.8:1.92;
+ const tractor=type==='tractor',thar=type==='thar',fort=type==='fortuner',bmw=type==='bmw',audi=type==='audi';
+ const length=tractor?4.5:audi?4.55:4.25, width=tractor?1.8:audi?1.95:1.92;
  // Main chassis, sculpted hood and cabin proportions differ by vehicle
  box(g,width,.48,length,paint,0,tractor?.78:.68,0);
  if(tractor){
@@ -166,6 +327,30 @@ function createCar(color=0x202a35,trafficCar=false){
    // exhaust stack and front weight block
    cyl(g,.055,.07,.95,dark,.58,1.92,-1.25,10);
    box(g,1.48,.32,.35,dark,0,.65,-2.22);
+ }else if(audi){
+   // Low-slung luxury sedan: long hood, sloping cabin, short trunk (Audi A6 / S-Line)
+   // long bonnet section
+   box(g,width*.92,.30,2.0,paint,0,.86,-1.25);
+   // cabin — slightly lower and longer than SUV, with sloping roofline
+   box(g,width*.80,1.18,2.15,paint,0,1.32,.35);
+   // short trunk lid at the rear
+   box(g,width*.86,.22,1.0,paint,0,.96,1.65);
+   // raked windshield
+   let wf=box(g,1.42,.70,.055,glass,0,1.42,-.65);wf.rotation.x=-.30;
+   // sloping rear window (fastback feel)
+   let wr=box(g,1.38,.62,.055,glass,0,1.40,1.18);wr.rotation.x=.30;
+   // flush side glass + character line trim
+   for(let side of [-1,1]){
+     box(g,.05,.56,1.85,glass,side*.84,1.34,.25);
+     box(g,.055,.07,2.4,dark,side*.90,1.02,.15);
+     // flush door handle
+     box(g,.16,.045,.05,chrome,side*.92,1.16,.4);
+     // side mirror with integrated turn signal
+     box(g,.18,.10,.20,paint,side*1.02,1.22,-.8);
+     box(g,.12,.07,.10,glass,side*1.10,1.24,-.82);
+   }
+   // body-coloured roof rails for the sporty sedan look
+   for(let side of [-1,1])box(g,.045,.06,1.9,paint,side*.66,1.94,.1);
  }else{
    const cabH=thar?1.12:1.38, cabZ=thar?.12:.2;
    box(g,width*.91,.24,1.12,paint,0,.91,-1.34);
@@ -189,6 +374,34 @@ function createCar(color=0x202a35,trafficCar=false){
    box(g,.82,.48,.09,dark,0,.78,-2.17);
    for(let x of [-.2,.2]){box(g,.27,.39,.11,chrome,x,.79,-2.23);for(let k=0;k<5;k++)box(g,.018,.32,.025,dark,x-.09+k*.045,.79,-2.3)}
    for(let side of [-1,1]){box(g,.43,.18,.09,lamp,side*.69,.92,-2.18);box(g,.34,.08,.08,lamp,side*.69,.72,-2.18)}
+ }else if(audi){
+   // Audi single-frame HEXAGONAL grille with horizontal chrome slats + 4-ring badge
+   const grilleGeo=new THREE.CylinderGeometry(.55,.62,.10,6,1,false,Math.PI/6,Math.PI*2/3*2);
+   const grille=new THREE.Mesh(grilleGeo,dark);grille.rotation.x=Math.PI/2;
+   grille.scale.set(1.0,1.0,.55);grille.position.set(0,.82,-2.28);g.add(grille);
+   // horizontal chrome slats across the grille
+   for(let k=0;k<5;k++)box(g,.78,.035,.03,chrome,0,.58+k*.13,-2.31);
+   // four-ring Audi emblem on the grille (4 small chrome rings)
+   for(let r=0;r<4;r++){
+     const ring=new THREE.Mesh(new THREE.TorusGeometry(.075,.018,8,18),chrome);
+     ring.position.set(-.18+(r%2)*.36,1.05-Math.floor(r/2)*.18,-2.33);g.add(ring);
+   }
+   // sharp angular LED headlights with daytime-running-light signature
+   for(let side of [-1,1]){
+     // main headlamp cluster — slim and angular
+     const head=box(g,.55,.16,.08,lamp,side*.66,.95,-2.20);
+     // DRL strip below (signature Audi light bar)
+     box(g,.48,.05,.06,new THREE.MeshStandardMaterial({color:0xf5fbff,emissive:0xcde8ff,emissiveIntensity:2.4}),side*.66,.80,-2.21);
+     // small upper accent light
+     box(g,.20,.04,.05,lamp,side*.66,1.06,-2.20);
+     // large side air intake in the S-Line bumper
+     box(g,.30,.22,.12,dark,side*.86,.58,-2.22);
+     box(g,.16,.05,.10,chrome,side*.86,.50,-2.25);
+   }
+   // lower splitter / S-Line front lip
+   box(g,1.6,.10,.15,dark,0,.40,-2.24);
+   // front number plate (white, like the reference photo)
+   box(g,.62,.12,.035,mat(0xe9edf0,.35,.4),0,.58,-2.27);
  }else if(fort){
    box(g,1.25,.62,.12,dark,0,.83,-2.17);
    for(let k=0;k<7;k++)box(g,1.12,.035,.025,chrome,0,.58+k*.075,-2.25);
@@ -250,6 +463,65 @@ function createCar(color=0x202a35,trafficCar=false){
  }
  return g;
 }
+// ---- Car poster generator -----------------------------------------------------
+// Renders each car's real 3D model into a small image used in the garage
+// cards, replacing the flat colour swatch with an actual car picture.
+const carPosterCache={};
+// Fills every garage card that still shows the colour placeholder with its
+// rendered 3D poster. Runs async (rAF) so it never blocks page load and
+// re-runs whenever the garage is rebuilt.
+function renderCarPosters(){
+ requestAnimationFrame(()=>{
+  const cards=document.querySelectorAll('.carChoice');
+  cards.forEach((card,i)=>{
+   const spec=carSpecs[i];if(!spec)return;
+   const posterBox=card.querySelector('.carPoster');if(!posterBox)return;
+   if(posterBox.dataset.done==='1')return;
+   const url=renderCarPoster(spec);
+   if(url){
+    posterBox.innerHTML=`<img src="${url}" alt="${spec.name}" loading="lazy">`;
+    posterBox.dataset.done='1';
+   }
+  });
+ });
+}
+function renderCarPoster(spec){
+ const key=spec.type+'_'+(spec.color>>>0);
+ if(carPosterCache[key])return carPosterCache[key];
+ const w=240,h=144;
+ const r=new THREE.WebGLRenderer({antialias:true,alpha:true,preserveDrawingBuffer:true});
+ r.setPixelRatio(1);r.setSize(w,h);r.toneMapping=THREE.ACESFilmicToneMapping;r.toneMappingExposure=1.15;r.outputColorSpace=THREE.SRGBColorSpace;
+ const s=new THREE.Scene();
+ s.background=new THREE.Color(0x0a1828);
+ s.fog=new THREE.Fog(0x0a1828,30,80);
+ const cam=new THREE.PerspectiveCamera(34,w/h,0.1,200);
+ // studio lighting: key + fill + rim
+ s.add(new THREE.AmbientLight(0xbfd4e8,0.55));
+ const keyLight=new THREE.DirectionalLight(0xffffff,1.5);keyLight.position.set(6,9,6);s.add(keyLight);
+ const fillLight=new THREE.DirectionalLight(0x6fa8dc,0.6);fillLight.position.set(-7,4,-2);s.add(fillLight);
+ const rimLight=new THREE.DirectionalLight(0xffd9a0,0.9);rimLight.position.set(-2,3,-9);s.add(rimLight);
+ // soft ground reflection
+ const floor=new THREE.Mesh(new THREE.CircleGeometry(8,32),new THREE.MeshStandardMaterial({color:0x0a1622,roughness:.35,metalness:.6}));
+ floor.rotation.x=-Math.PI/2;floor.position.y=0.01;s.add(floor);
+ // build the actual car model. createCar reads `selected`/`driverDoor`/
+ // `headlightSpots`/`playerWheels` globals — snapshot & restore them so the
+ // poster build does not corrupt the live game state.
+ const savedSel=selected,savedDoor=driverDoor,savedSpots=headlightSpots.slice(),savedWheels=playerWheels.slice();
+ headlightSpots.length=0;playerWheels.length=0;
+ selected=carSpecs.findIndex(c=>c.type===spec.type);if(selected<0)selected=0;
+ let car;
+ try{car=createCar(spec.color,false);s.add(car);}
+ finally{selected=savedSel;driverDoor=savedDoor;headlightSpots.push(...savedSpots);playerWheels.push(...savedWheels);}
+ // place & frame: front-three-quarter hero angle
+ car.position.set(0,0,0);car.rotation.set(0,-0.55,0);
+ cam.position.set(5.8,3.0,6.8);cam.lookAt(0,0.9,0);
+ r.render(s,cam);
+ let url;
+ try{url=r.domElement.toDataURL('image/png');}catch(e){url=null;}
+ r.dispose();car.geometry&&car.traverse(o=>{if(o.geometry)o.geometry.dispose();if(o.material){(Array.isArray(o.material)?o.material:[o.material]).forEach(m=>m.dispose())}});
+ carPosterCache[key]=url;
+ return url;
+}
 function makeDriver(){
  const g=new THREE.Group();
  const skin=new THREE.MeshStandardMaterial({color:0xb77b55,roughness:.85});
@@ -292,8 +564,61 @@ function makeTree(x,z,scale=1){
  scene.add(g);decor.push(g);return g;
 }
 function makeRock(x,z,scale=1){let m=new THREE.Mesh(new THREE.DodecahedronGeometry(scale,0),mat(0x777e76,.95));m.position.set(x,scale*.6,z);m.rotation.set(Math.random(),Math.random(),Math.random());m.castShadow=true;scene.add(m);decor.push(m)}
-function makeLamp(x,z){let g=new THREE.Group();g.position.set(x,0,z);cyl(g,.06,.08,4,mat(0x58616a,.4,.7),0,2,0,8);let arm=box(g,.08,.08,1.4,mat(0x58616a,.4,.7),-.55,3.9,0);let light=new THREE.Mesh(new THREE.BoxGeometry(.35,.12,.45),mats.white);light.position.set(-1.1,3.82,0);g.add(light);scene.add(g);decor.push(g)}
+function makeSpeedBreaker(z){
+ // Normal-sized Indian speed breaker: a low rounded hump across the road
+ // with alternating YELLOW/BLACK warning stripes, reflective edge markers
+ // and an advance warning sign 30 m ahead.
+ // Hump height ≈ 10 cm (normal size), spacing = 500 m (≈ 900 world units).
+ const g=new THREE.Group();g.position.set(0,0,z);
+ const humpR=0.20;                          // hump height ≈ 10 cm (normal)
+ const sliceW=1.15;                         // width of each coloured stripe
+ const slices=Math.floor(19.4/sliceW);
+ const startX=-(slices*sliceW)/2+sliceW/2;
+ for(let i=0;i<slices;i++){
+  const isYellow=i%2===0;
+  const geo=new THREE.CylinderGeometry(humpR,humpR,sliceW*0.96,18,1,false,-Math.PI/2,Math.PI);
+  const slice=new THREE.Mesh(geo,new THREE.MeshStandardMaterial({
+   color:isYellow?0xffd000:0x0a0a0a,roughness:.6,
+   emissive:isYellow?0xff9900:0x000000,emissiveIntensity:isYellow?.22:0
+  }));
+  slice.rotation.z=Math.PI/2;               // axis along X → lies across the road, rounded side up
+  slice.position.set(startX+i*sliceW,humpR,0);
+  slice.castShadow=true;slice.receiveShadow=true;
+  g.add(slice);
+ }
+ // Reflective red-over-white edge markers on both shoulders (visible at night)
+ for(const side of [-1,1]){
+  box(g,0.26,0.18,0.8,new THREE.MeshStandardMaterial({color:0xff2a2a,emissive:0xff0000,emissiveIntensity:1.2}),side*9.78,0.14,0);
+  box(g,0.26,0.18,0.8,new THREE.MeshStandardMaterial({color:0xffffff,emissive:0xbbbbbb,emissiveIntensity:.5}),side*9.78,0.32,0);
+ }
+ // Advance warning sign 30 m ahead, on both sides of the road
+ for(const side of [-1,1]){
+  const sign=new THREE.Group();sign.position.set(side*11.6,0,-32);g.add(sign);
+  cyl(sign,.06,.08,3.0,mat(0x58616a,.4,.7),0,1.5,0,8);
+  box(sign,1.2,1.2,.05,new THREE.MeshStandardMaterial({color:0xffd000,roughness:.55,emissive:0xff9900,emissiveIntensity:.18}),0,2.8,0);
+  const sym=new THREE.Mesh(new THREE.CylinderGeometry(.26,.26,0.8,18,1,false,-Math.PI/2,Math.PI),new THREE.MeshStandardMaterial({color:0x111111,roughness:.7}));
+  sym.rotation.z=Math.PI/2;sym.position.set(0,2.8,0.05);sign.add(sym);
+ }
+ g.userData.hit=false;scene.add(g);speedBreakers.push(g);return g;
+}
+function makeLamp(x,z){
+ // Pole stands just outside the road shoulder; its arm and light face inward.
+ const inward = x > 0 ? -1 : 1;
+ let g=new THREE.Group();g.position.set(x,0,z);
+ const poleMat=mat(0x58616a,.4,.7);
+ cyl(g,.06,.08,4,poleMat,0,2,0,8);
+ box(g,.08,.08,1.4,poleMat,inward*.55,3.9,0);
+ const bulbMat=new THREE.MeshStandardMaterial({color:0xffe7a3,emissive:0xffc45b,emissiveIntensity:0,roughness:.35});
+ const bulb=new THREE.Mesh(new THREE.BoxGeometry(.35,.12,.45),bulbMat);
+ bulb.position.set(inward*1.1,3.82,0);g.add(bulb);
+ const glow=new THREE.PointLight(0xffd58a,0,32,1.7);
+ glow.position.set(inward*1.1,3.55,0);glow.castShadow=false;g.add(glow);
+ if(!window.streetLights)window.streetLights=[];
+ window.streetLights.push({group:g,bulbMat,glow});
+ scene.add(g);
+}
 function createWorld(){
+ window.streetLights=[];
  scene=new THREE.Scene();scene.background=new THREE.Color(0x9bc8df);scene.fog=new THREE.Fog(0x9bc8df,65,310);
  camera=new THREE.PerspectiveCamera(66,innerWidth/innerHeight,.1,650);camera.position.set(0,5.3,11.8);
  renderer=new THREE.WebGLRenderer({antialias:true,powerPreference:'high-performance'});renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.setSize(innerWidth,innerHeight);renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.12;
@@ -320,9 +645,21 @@ function createWorld(){
  }
  // trees and roadside props in an endless recycle pool
  for(let i=0;i<70;i++){
-   let z=-Math.random()*360,x=(Math.random()<.5?-1:1)*(14+Math.random()*38),s=.55+Math.random()*1.8;
-   if(i%8===0)makeLamp(x,z);else if(i%7===0)makeRock(x,z,.5+Math.random()*2);else makeTree(x,z,s);
+   let z=-Math.random()*360,x=(Math.random()<.5?-1:1)*(17+Math.random()*35),s=.55+Math.random()*1.8;
+   if(i%7===0)makeRock(x,z,.5+Math.random()*2);else makeTree(x,z,s);
  }
+ // Evenly spaced streetlights run along BOTH road edges, rather than among distant props.
+ // Dense, continuous paired streetlights cover the full visible highway.
+ // These are recycled forever as the player drives, so there is no final lamp.
+ for(let i=0;i<7;i++){
+   // 54 world units represent about 30 metres in this road scale.
+   const lampZ=-8-i*54;
+   makeLamp(-11.9,lampZ);
+   makeLamp(11.9,lampZ);
+ }
+ // First speed breaker is placed exactly 500 m ahead (900 world units).
+ // It then recycles at the same 500 m interval as the player drives.
+ makeSpeedBreaker(-900);
  addEnvironmentDetail();
  // Small roadside village clusters, hidden on the city route and shown on mountain route
  for(let side of [-1,1])for(let i=0;i<7;i++){
@@ -369,7 +706,7 @@ function createWorld(){
  driverAvatar=makeDriver();driverAvatar.position.set(-2.35,0,3.55);scene.add(driverAvatar);
  if(driverDoor)driverDoor.rotation.y=0;
 }
-function clearWorld(){if(renderer){renderer.dispose();$('game').innerHTML=''}traffic=[];roadSegments=[];decor=[];playerWheels=[];signalRig=null;signalBulbs=[];signalStopLine=null;pedestrians=[];tollGates=[];scene=null;player=null;camera=null;driverDoor=null;driverAvatar=null}
+function clearWorld(){if(renderer){renderer.dispose();$('game').innerHTML=''}traffic=[];roadSegments=[];decor=[];playerWheels=[];speedBreakers=[];window.streetLights=[];signalRig=null;signalBulbs=[];signalStopLine=null;pedestrians=[];tollGates=[];scene=null;player=null;camera=null;driverDoor=null;driverAvatar=null}
 function spawnTraffic(){
  const lane=[-7.1,-3.55,0,3.55,7.1][Math.floor(Math.random()*5)];
  const kind=['CAR','AUTO','BUS','TRUCK','BIKE'][Math.floor(Math.random()*5)];
@@ -389,11 +726,14 @@ function applyLighting(){
  const bg=isNight?0x071326:0x9bc8df;
  scene.background=new THREE.Color(bg);
  scene.fog.color.setHex(bg);
- if(hemiLight)hemiLight.intensity=isNight?.42:2.35;
- if(sunLight){sunLight.intensity=isNight?.08:3.2;sunLight.color.setHex(isNight?0x7894c8:0xffedcf)}
- if(fillLight)fillLight.intensity=isNight?.22:.7;
- renderer.toneMappingExposure=isNight?.72:1.18;
+ if(hemiLight)hemiLight.intensity=isNight?.82:2.35;
+ if(sunLight){sunLight.intensity=isNight?.16:3.2;sunLight.color.setHex(isNight?0x7894c8:0xffedcf)}
+ if(fillLight)fillLight.intensity=isNight?.48:.7;
+ renderer.toneMappingExposure=isNight?1.18:1.18;
+ if(mats.road){mats.road.emissive.setHex(isNight?0x343b48:0x000000);mats.road.emissiveIntensity=isNight?.48:0;}
  headlightSpots.forEach(l=>{l.intensity=headlightsOn?(isNight?48:22):0});
+ // Street lamps switch on automatically at night and turn off in daylight.
+ (window.streetLights||[]).forEach(s=>{s.glow.intensity=isNight?8.5:0;s.bulbMat.emissiveIntensity=isNight?5.5:0;});
  $('dayNight').textContent=isNight?'☀️ DAY':'🌙 NIGHT';
  $('headlights').textContent=headlightsOn?'💡 LIGHTS ON':'💡 LIGHTS OFF';
 }
@@ -432,18 +772,27 @@ function updateChallenge(dt,kmh){
 
 
 function loadSave(){
- try{const raw=localStorage.getItem('infiniteDrive3D_save');if(raw){const d=JSON.parse(raw);saveData={...saveData,...d};xp=saveData.xp||0;cash=saveData.cash??50000;treasures=saveData.treasures||0;championshipWins=saveData.wins||0;storyStep=saveData.story||0;}}catch(e){}
- updateCareer();$('treasureCount').textContent=treasures+' / 12';$('champText').textContent='WINS '+championshipWins;
+ try{const raw=localStorage.getItem('infiniteDrive3D_save');if(raw){const d=JSON.parse(raw);saveData={...saveData,...d};xp=saveData.xp||0;totalDistance=saveData.totalDistance||0;topSpeed=saveData.topSpeed||0;bestDrift=saveData.bestDrift||0;bestOvertakes=saveData.bestOvertakes||0;treasures=saveData.treasures||0;championshipWins=saveData.wins||0;storyStep=saveData.story||0;
+  if(Array.isArray(saveData.ownedCars)){ownedCars=carSpecs.map((c,i)=>saveData.ownedCars[i]===true);}
+  if(saveData.perks&&typeof saveData.perks==='object'){perks={nitro:saveData.perks.nitro||0,fuel:saveData.perks.fuel||0,armor:saveData.perks.armor||0,booster:saveData.perks.booster||0};}
+  lastRewardedLevel=saveData.lastRewardedLevel||1;
+ }}catch(e){}
+ // recompute career level from loaded xp, then sync reward state without
+ // re-toasting rewards that were already handed out on a previous session.
+ careerLevel=Math.min(MAX_CAREER_LEVEL,Math.floor(xp/XP_PER_LEVEL)+1);
+ if(lastRewardedLevel<1)lastRewardedLevel=1;
+ if(lastRewardedLevel>careerLevel)lastRewardedLevel=careerLevel;
+ updateCareer();buildGarage();$('treasureCount').textContent=treasures+' / 12';$('champText').textContent='WINS '+championshipWins;
 }
 function saveProgress(){
- saveData={xp,cash,treasures,wins:championshipWins,story:storyStep};
+ saveData={xp,totalDistance,topSpeed,bestDrift,bestOvertakes,treasures,wins:championshipWins,story:storyStep,ownedCars,perks,lastRewardedLevel};
  try{localStorage.setItem('infiniteDrive3D_save',JSON.stringify(saveData));}catch(e){}
 }
 function setAdventure(mode){
  adventureMode=mode;
  const descriptions={
  STORY:'Story: complete 5 driving chapters — warm-up, clean drive, speed run, mountain route and final championship.',
- TREASURE:'Treasure Hunt: collect 12 glowing tokens placed along the road. Each token rewards ₹750 and XP.',
+ TREASURE:'Treasure Hunt: collect 12 glowing tokens placed along the road. Each token rewards XP — collect 6 to unlock the Farm Tractor.',
  STUNT:'Stunt Challenge: find the stunt zone, build speed and steer through the ramp section to earn stunt points.',
  CHAMP:'Championship: complete 5 timed rounds. Reach the target distance before the timer ends to earn a trophy.'
  };
@@ -451,6 +800,56 @@ function setAdventure(mode){
 }
 $('adventureBtn').onclick=()=>{$('adventureModal').classList.remove('hidden');setAdventure(adventureMode==='FREE'?'STORY':adventureMode);};
 $('adventureClose').onclick=()=>$('adventureModal').classList.add('hidden');
+// ---- Career / Progression panel ----------------------------------------------
+const RANK_TITLES=['Rookie Driver','City Cruiser','Highway Runner','Road Veteran','Drift Master','Turbo Charger','Speed Demon','Apex Hunter','Asphalt Legend','Highway God'];
+const PERK_INFO={
+ nitro:{name:'NITRO TANK',desc:'+15% nitro capacity per level (max 3)'},
+ fuel:{name:'FUEL ECONOMY',desc:'-12% fuel drain per level (max 3)'},
+ armor:{name:'CRASH ARMOR',desc:'-15% crash damage per level (max 3)'},
+ booster:{name:'XP BOOSTER',desc:'+10% XP earned per level (max 3)'}
+};
+// Active perk multipliers — used by the gameplay loop.
+function nitroCap(){return 100+perks.nitro*15;}        // max nitro pool
+function fuelMul(){return 1-perks.fuel*0.12;}          // multiply fuel drain
+function armorMul(){return 1-perks.armor*0.15;}        // multiply crash damage
+function xpMul(){return 1+perks.booster*0.10;}          // multiply XP earned
+function buildCareerPanel(){
+ $('careerModalLevel').textContent=careerLevel;
+ $('careerModalRank').textContent=RANK_TITLES[Math.min(careerLevel-1,RANK_TITLES.length-1)]+(careerLevel>=MAX_CAREER_LEVEL?' · MAX':'');
+ const xpInLevel=xp-(careerLevel-1)*XP_PER_LEVEL;
+ const xpNeeded=careerLevel>=MAX_CAREER_LEVEL?XP_PER_LEVEL:XP_PER_LEVEL;
+ $('careerModalXp').textContent=careerLevel>=MAX_CAREER_LEVEL?'MAX LEVEL':Math.floor(xpInLevel)+' / '+xpNeeded;
+ const pct=careerLevel>=MAX_CAREER_LEVEL?100:Math.max(0,Math.min(100,xpInLevel/XP_PER_LEVEL*100));
+ $('careerModalBar').style.width=pct+'%';
+ const next=LEVEL_REWARDS[Math.min(careerLevel,MAX_CAREER_LEVEL-1)];
+ $('careerModalNext').textContent=careerLevel>=MAX_CAREER_LEVEL?'Maximum career level reached — you are a Highway God.'
+  :('Next: Level '+(careerLevel+1)+' · '+(next.perk?'+1 perk point to spend on driver perks':'no perk this level — cars unlock via driving milestones'));
+ // reward ladder — full list of all 10 levels with status
+ $('careerModalRewards').innerHTML='<b style="color:#61e7ff;letter-spacing:2px;font-size:11px">PERK POINT LADDER</b>'+
+  LEVEL_REWARDS.map((r,l)=>{
+   const lvl=l+1;
+   const done=lvl<=careerLevel;
+   return `<div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid #1a2b3c;color:${done?'#cfe':'#5b7186'}">
+     <span>${done?'✓':'○'} Lv ${lvl}${r.perk?' · +1 perk point':''}</span>
+     <span style="font-size:10px;color:#9db3c8">${r.label}</span></div>`;
+  }).join('');
+ // perks — current levels + buy buttons if perk points available
+ const avail=perkPointsAvailable();
+ const perksHtml=Object.keys(PERK_INFO).map(k=>{
+  const p=perks[k];const maxed=p>=3;
+  return `<div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid #1a2b3c">
+    <div><b>${PERK_INFO[k].name}</b> <span style="color:#61e7ff">${'★'.repeat(p)}<span style="color:#2a3b4c">${'★'.repeat(3-p)}</span></span><div style="font-size:10px;color:#9db3c8">${PERK_INFO[k].desc}</div></div>
+    ${maxed?'<span style="color:#54edbc;font-size:11px">MAXED</span>':`<button data-perk="${k}" ${avail>0?'':'disabled style="opacity:.4"'}>UPGRADE ${avail>0?'(1 pt)':'(0 pt)'}</button>`}
+   </div>`;
+ }).join('');
+ $('careerModalPerks').innerHTML='<b style="color:#61e7ff;letter-spacing:2px;font-size:11px">DRIVER PERKS</b> <span style="float:right;font-size:11px;color:#9db3c8">Available points: <b style="color:#54edbc">'+avail+'</b></span>'+perksHtml;
+ document.querySelectorAll('#careerModalPerks [data-perk]').forEach(b=>b.onclick=()=>{
+  const k=b.dataset.perk;if(perks[k]>=3||perkPointsAvailable()<=0)return;
+  perks[k]++;saveProgress();buildCareerPanel();toast(PERK_INFO[k].name+' upgraded to '+perks[k]+' ★');
+ });
+}
+$('careerBtn').onclick=()=>{buildCareerPanel();$('careerModal').classList.remove('hidden');};
+$('careerClose').onclick=()=>$('careerModal').classList.add('hidden');
 $('storyBtn').onclick=()=>setAdventure('STORY');
 $('treasureBtn').onclick=()=>setAdventure('TREASURE');
 $('stuntBtn').onclick=()=>setAdventure('STUNT');
@@ -465,7 +864,8 @@ $('adventureStart').onclick=()=>{
  $('eventName').textContent=adventureMode;$('adventureModal').classList.add('hidden');saveProgress();
 };
 function award(amount,points,msg){
- cash+=amount;xp+=points;updateCareer();saveProgress();toast(msg+'  +₹'+amount+' · +'+points+' XP');
+ const realPts=Math.floor(points*xpMul());
+ xp+=realPts;updateCareer();saveProgress();toast(msg+'  +'+realPts+' XP');
 }
 function spawnAdventureObjects(){
  treasureTokens=[];
@@ -546,9 +946,7 @@ function updateSignal(dt){
  signalRig.position.z+=speed*dt*.68;
  signalStopLine.position.z=signalRig.position.z;
  if(signalRig.position.z>player.position.z+1.2){
-  if(!signalPassed&&signalState==='RED'&&speed>12){
-   cash=Math.max(0,cash-500);updateCareer();toast('Red-light violation · virtual fine ₹500');
-  }
+  // Traffic signals remain visual guidance only; no virtual fine is charged.
   signalPassed=true;
  }
  if(signalRig.position.z>25){signalRig.position.z=-260-Math.random()*40;signalPassed=false;signalClock+=3;}
@@ -575,10 +973,48 @@ function toast(msg){
  const el=$('featureToast');el.textContent=msg;el.classList.add('show');
  clearTimeout(currentToastTimer);currentToastTimer=setTimeout(()=>el.classList.remove('show'),2300);
 }
-function updateCareer(){
- $('xpText').textContent=Math.floor(xp);$('cashText').textContent=Math.floor(cash).toLocaleString('en-IN');
- careerLevel=Math.floor(xp/500)+1;$('careerLevel').textContent=careerLevel;
+// ---- Progression Mode: level-up rewards -------------------------------------
+// Career levels grant perk points only — spent in the Career panel to upgrade
+// driver perks. Cars unlock separately by driving milestones (CAR_MILESTONES).
+// No cash is awarded or spent anywhere in the game.
+const LEVEL_REWARDS=[
+ {perk:0, label:'Welcome — your career begins'},
+ {perk:1, label:'Level 2 · +1 perk point'},            // L2
+ {perk:0, label:'Level 3 reached'},                    // L3
+ {perk:1, label:'Level 4 · +1 perk point'},            // L4
+ {perk:0, label:'Level 5 reached'},                    // L5
+ {perk:1, label:'Level 6 · +1 perk point'},            // L6
+ {perk:0, label:'Level 7 reached'},                    // L7
+ {perk:1, label:'Level 8 · +1 perk point'},            // L8
+ {perk:0, label:'Level 9 reached'},                    // L9
+ {perk:1, label:'Level 10 · LEGEND status · +1 perk point'} // L10
+];
+// Total perk points earned = sum of perk granted per level reached.
+function perkPointsAvailable(){
+ let used=perks.nitro+perks.fuel+perks.armor+perks.booster;
+ let earned=0;for(let l=1;l<=Math.min(careerLevel,MAX_CAREER_LEVEL);l++)earned+=LEVEL_REWARDS[l-1].perk;
+ return earned-used;
 }
+// Dispenses any level-up rewards the player has earned but not yet received.
+function checkLevelUp(){
+ careerLevel=Math.min(MAX_CAREER_LEVEL,Math.floor(xp/XP_PER_LEVEL)+1);
+ while(lastRewardedLevel<careerLevel){
+  lastRewardedLevel++;
+  const r=LEVEL_REWARDS[lastRewardedLevel-1];
+  toast('LEVEL UP! → Level '+lastRewardedLevel+' · '+r.label);
+  // pause briefly so the toast is readable, then refresh any open panels
+  if(typeof buildCareerPanel!=='undefined'&&document.getElementById('careerModal')&&!document.getElementById('careerModal').classList.contains('hidden'))buildCareerPanel();
+ }
+}
+function updateCareer(){
+ $('xpText').textContent=Math.floor(xp);if($('ownedText'))$('ownedText').textContent=ownedCount()+'/11';
+ careerLevel=Math.floor(xp/XP_PER_LEVEL)+1;if(careerLevel>MAX_CAREER_LEVEL)careerLevel=MAX_CAREER_LEVEL;
+ $('careerLevel').textContent=careerLevel;
+ checkLevelUp();
+}
+// Load saved progression + sync garage/HUD now that the progression helpers
+// are defined, so the menu reflects the player's career before driving.
+loadSave();
 function showFeature(title,desc,body){
  $('featureTitle').textContent=title;$('featureDesc').textContent=desc;$('featureBody').innerHTML=body;
  $('featureModal').classList.remove('hidden');
@@ -595,16 +1031,22 @@ $('mapBtn').onclick=()=>{
   decor.forEach(o=>{if(o.userData&&o.userData.village) o.visible=mapMode==='MOUNTAIN';});
   toast(mapMode==='CITY'?'City route selected':'Mountain & village route selected');}
 };
-$('houseBtn').onclick=()=>showFeature('MY HOUSE & GARAGE','Your personal home base. Park, plan and manage your collection.',
- `<div style="background:#10283b;border-radius:12px;padding:14px"><b>🏡 DRIVER HOME</b><p>Private driveway · Vehicle collection · Career planning</p><p>Garage capacity: ${8+careerLevel*2} vehicles</p><button id="parkHome">PARK IN GARAGE</button> <button id="homeReward">DAILY GARAGE BONUS +₹500</button></div>`);
-$('marketBtn').onclick=()=>{
- let cards=carSpecs.map((c,i)=>`<div style="background:#10283b;border:1px solid #345;padding:9px;border-radius:9px;margin:6px;text-align:left"><b>${c.name}</b><div style="font-size:11px;color:#aac">₹${(12000+i*8500).toLocaleString('en-IN')} · ${i===selected?'SELECTED':'AVAILABLE'}</div><button data-buy="${i}">BUY / UNLOCK</button> <button data-sell="${i}">SELL SELECTED</button></div>`).join('');
- showFeature('CAR MARKET','Buy and sell cars using virtual in-game credits. Existing cars remain available.',`<div style="max-height:45vh;overflow:auto">${cards}</div>`);
- document.querySelectorAll('[data-buy]').forEach(b=>b.onclick=()=>{let i=+b.dataset.buy,price=12000+i*8500;if(cash>=price){cash-=price;selected=i;buildGarage();updateCareer();toast(carSpecs[i].name+' added to your garage');}else toast('Not enough credits — complete missions to earn more.');});
- document.querySelectorAll('[data-sell]').forEach(b=>b.onclick=()=>{let i=+b.dataset.sell;if(i===selected){cash+=Math.floor((12000+i*8500)*.65);updateCareer();toast('Vehicle sold for virtual credits');}else toast('Select that vehicle first from the garage.');});
+$('houseBtn').onclick=()=>showFeature('MY HOUSE & GARAGE','Your personal home base. Park, plan and view your collection.',
+ `<div style="background:#10283b;border-radius:12px;padding:14px"><b>🏡 DRIVER HOME</b><p>Private driveway · Vehicle collection · Career planning</p><p>Garage capacity: ${8+careerLevel*2} vehicles · Owned: ${ownedCount()}/11</p><button id="parkHome">PARK IN GARAGE</button> <button id="homeReward">VIEW COLLECTION</button></div>`);
+$('unlocksBtn').onclick=()=>{
+ const cards=carSpecs.map((c,i)=>{
+  const owned=ownedCars[i]===true;
+  const isSel=i===selected;
+  const m=CAR_MILESTONES[i];
+  const status=owned?(isSel?'<span style="color:#61e7ff">✓ SELECTED</span>':'<span style="color:#54edbc">✓ UNLOCKED</span>'):'<span style="color:#9db3c8">🔒 '+m.label+'</span>';
+  const btn=owned?(isSel?'<button disabled style="opacity:.5">CURRENT</button>':'<button class="primary" data-select="'+i+'">SELECT</button>'):'<button disabled style="opacity:.4">LOCKED</button>';
+  return `<div style="background:#10283b;border:1px solid #345;padding:9px;border-radius:9px;margin:6px;text-align:left"><b>${c.name}</b> <span style="font-size:10px;color:#7a93a8">${c.sub}</span><div style="font-size:11px;margin:4px 0">${status}</div>${btn}</div>`;
+ }).join('');
+ showFeature('CAR UNLOCKS','Earn every car by driving — no purchases, no cash. Complete each milestone to unlock the matching vehicle, then SELECT it to drive.','<div style="max-height:45vh;overflow:auto">'+cards+'</div>');
+ document.querySelectorAll('[data-select]').forEach(b=>b.onclick=()=>{selected=+b.dataset.select;buildGarage();toast(carSpecs[selected].name+' selected');});
 };
-$('workshopBtn').onclick=()=>showFeature('MECHANIC WORKSHOP','Repair damage and tune your vehicle for better handling.',
- `<div style="background:#10283b;border-radius:12px;padding:14px"><p>Condition: ${Math.round(damage)}% · Workshop tuning: ${workshopBoost}</p><button id="repairShop">FULL REPAIR · ₹1,000</button> <button id="tuneShop">ENGINE TUNE · ₹2,500</button><p style="font-size:11px">Tuning improves acceleration and steering response for this session.</p></div>`);
+$('workshopBtn').onclick=()=>showFeature('MECHANIC WORKSHOP','Repair damage and tune your vehicle for better handling — free services.',
+ `<div style="background:#10283b;border-radius:12px;padding:14px"><p>Condition: ${Math.round(damage)}% · Workshop tuning: Level ${workshopBoost}/3</p><button id="repairShop">FULL REPAIR · FREE</button> <button id="tuneShop">ENGINE TUNE · FREE</button><p style="font-size:11px">Tuning improves acceleration and steering response for this session (max level 3).</p></div>`);
 $('raceBtn').onclick=()=>{rivalActive=!rivalActive;$('raceBtn').textContent=rivalActive?'🏁 RIVAL: ON':'🏁 RIVAL: OFF';toast(rivalActive?'Local AI rival enabled — not online multiplayer.':'Rival race disabled.');};
 $('replayBtn').onclick=()=>{cameraMode=3;showCameraMode();toast('Cinematic camera enabled. Press C to cycle camera views.');};
 $('leftSignalBtn').onclick=()=>setIndicator('LEFT');
@@ -612,20 +1054,43 @@ $('rightSignalBtn').onclick=()=>setIndicator('RIGHT');
 $('hornBtn').onclick=honk;
 document.addEventListener('click',e=>{
  if(e.target.id==='parkHome')toast('Car parked at your home garage!');
- if(e.target.id==='homeReward'){cash+=500;updateCareer();toast('Garage bonus received: ₹500');}
- if(e.target.id==='repairShop'){if(cash>=1000){cash-=1000;damage=100;$('damageText').textContent='100%';updateCareer();toast('Workshop repair complete.')}else toast('Not enough credits.');}
- if(e.target.id==='tuneShop'){if(cash>=2500){cash-=2500;workshopBoost=Math.min(3,workshopBoost+1);updateCareer();toast('Engine tuning upgraded!')}else toast('Not enough credits.');}
+ if(e.target.id==='homeReward'){toast('Collection: '+ownedCount()+'/11 vehicles unlocked');}
+ if(e.target.id==='repairShop'){damage=100;$('damageText').textContent='100%';toast('Workshop repair complete — free service');}
+ if(e.target.id==='tuneShop'){if(workshopBoost<3){workshopBoost++;toast('Engine tuning upgraded to level '+workshopBoost+'/3')}else toast('Engine already at max tuning (3/3)');}
 });
 
 function startGame(){
  if(renderer)clearWorld();
  policeCar=null;rivalCar=null;pedestrians=[];tollGates=[];
- speed=0;dist=0;level=1;nitro=100;fuel=100;damage=100;missionCount=0;steer=0;worldDistance=0;driftScore=0;spawnTimer=1;curve=0;curveTarget=0;curveTimer=2;cameraMode=0;challengeIndex=0;challengeProgress=0;challengeRewarded=false;levelStartDist=0;levelStartDrift=0;nearMisses=0;nitroUsedDistance=0;running=true;ended=false;vehicleReady=false;introTime=0;engineStarted=false;
- createWorld();applyWeather();spawnAdventureObjects();player.position.x=0;updateCareer();player.position.z=3;camera.position.set(-5.8,3.2,8.8);camera.lookAt(0,1.0,2.2);
- $('menu').classList.add('hidden');$('result').classList.add('hidden');loadSave();$('loading').classList.add('hidden');$('challengeHud').style.display='block';updateChallengeHud();clock=new THREE.Clock();animate();
+ speed=0;dist=0;level=1;nitro=nitroCap();fuel=100;damage=100;missionCount=0;steer=0;worldDistance=0;driftScore=0;spawnTimer=1;curve=0;curveTarget=0;curveTimer=2;cameraMode=0;challengeIndex=0;challengeProgress=0;challengeRewarded=false;levelStartDist=0;levelStartDrift=0;nearMisses=0;nitroUsedDistance=0;running=true;ended=false;vehicleReady=false;introTime=0;engineStarted=false;
+ createWorld();applyLighting();applyWeather();spawnAdventureObjects();player.position.x=0;updateCareer();player.position.z=3;camera.position.set(-5.8,3.2,8.8);camera.lookAt(0,1.0,2.2);
+ $('menu').classList.add('hidden');$('result').classList.add('hidden');
+const mobileMenuToggle=$('mobileMenuToggle');
+if(mobileMenuToggle){
+ mobileMenuToggle.addEventListener('click',()=>{
+  const open=$('featureConsole').classList.toggle('mobile-open');
+  mobileMenuToggle.textContent=open?'✕ CLOSE':'☰ MENU';
+  mobileMenuToggle.setAttribute('aria-expanded',String(open));
+ });
+ document.addEventListener('pointerdown',e=>{
+  if(window.innerWidth<=700 && $('featureConsole').classList.contains('mobile-open') &&
+     !e.target.closest('#featureConsole') && !e.target.closest('#mobileMenuToggle')){
+    $('featureConsole').classList.remove('mobile-open');
+    mobileMenuToggle.textContent='☰ MENU';
+    mobileMenuToggle.setAttribute('aria-expanded','false');
+  }
+ });
+}
+
+$('loading').classList.add('hidden');$('challengeHud').style.display='block';updateChallengeHud();clock=new THREE.Clock();animate();
 }
 function finish(crashed=false){
- if(!running)return;running=false;ended=true;cash+=Math.floor(dist*250+driftScore*.15);xp+=Math.floor(dist*80+driftScore*.05);updateCareer();saveProgress();$('resultTitle').textContent=crashed?'CRASH!':'HIGHWAY LEGEND!';
+ if(!running)return;running=false;ended=true;
+ totalDistance+=dist;
+ if(driftScore>bestDrift)bestDrift=driftScore;
+ if(nearMisses>bestOvertakes)bestOvertakes=nearMisses;
+ checkMilestones();
+ xp+=Math.floor((dist*80+driftScore*.05)*xpMul());updateCareer();saveProgress();$('resultTitle').textContent=crashed?'CRASH!':'HIGHWAY LEGEND!';
  $('resultText').textContent=crashed?`${difficultySettings[difficulty].label} · Distance ${dist.toFixed(2)} km · Level ${level}/10 · Drift score ${Math.floor(driftScore)}. Avoid traffic and roadside edges, then try again.`:`You completed all 10 levels! Distance ${dist.toFixed(2)} km · Drift score ${Math.floor(driftScore)}.`;
  $('result').classList.remove('hidden');
 }
@@ -659,7 +1124,7 @@ function update(dt){
   }
  }
  const spec=carSpecs[selected],gas=active('gas'),brake=active('brake');drifting=active('drift');boosting=active('boost')&&nitro>0&&speed>28;
- let target=gas?spec.max:(brake?0:speed*.985);if(boosting){target*=1.4;nitro=Math.max(0,nitro-28*dt);nitroUsedDistance+=speed*dt/3600}else nitro=Math.min(100,nitro+(drifting?2:8)*dt);
+ let target=gas?spec.max:(brake?0:speed*.985);if(boosting){target*=1.4;nitro=Math.max(0,nitro-28*dt);nitroUsedDistance+=speed*dt/3600}else nitro=Math.min(nitroCap(),nitro+(drifting?2:8)*dt);
  const wetGrip=weather==='STORM'?.48:weather==='RAIN'?.68:1;
  const gripFactor=wetGrip*(damage<50?.78:1);
  speed+=(target-speed)*Math.min(1,dt*(brake?2.6:gas?.48:.42)*(spec.acc+workshopBoost*.08));
@@ -676,20 +1141,44 @@ function update(dt){
  citySpeedLimit=mapMode==='MOUNTAIN'?60:80;
  $('limitText').textContent=citySpeedLimit+' km/h';
  $('gripText').textContent=weather==='STORM'?'LOW · STORM':weather==='RAIN'?'REDUCED · WET':'NORMAL';
- if(kmh>citySpeedLimit+12){overspeedClock+=dt;if(overspeedClock>5&&dist-lastFineAt>.08){cash=Math.max(0,cash-250);lastFineAt=dist;updateCareer();toast('Speed camera fine · ₹250');}}
- else overspeedClock=Math.max(0,overspeedClock-dt*2);
+ // Speed limits remain displayed, but speeding no longer deducts virtual cash.
  updateSignal(dt);updateAdventure(dt,kmh);
- dist+=kmh*dt/3600;xp+=kmh*dt*.012;cash+=kmh*dt*.018;updateCareer();fuel=Math.max(0,fuel-(.0015+kmh*.000008)*dt);$('fuelText').textContent=Math.round(fuel)+'%';if(fuel<=0)speed=Math.max(0,speed-dt*22);if(missionMode===2&&fuel>0)missionCount+=dt;if(missionMode===3&&damage>=100)missionCount+=dt;let missionDone=missionMode===1?dist>=1:missionMode===2?missionCount>=120:missionMode===3?missionCount>=60:false;$('missionText').textContent=missionMode===0?'Free Drive':missionDone?'COMPLETE ✓':missionMode===1?dist.toFixed(2)+' / 1 km':missionMode===2?Math.floor(missionCount)+' / 120 sec':Math.floor(missionCount)+' / 60 sec';worldDistance+=speed*dt*.36;
+ dist+=kmh*dt/3600;xp+=kmh*dt*.012*xpMul();updateCareer();fuel=Math.max(0,fuel-(.0015+kmh*.000008)*dt*fuelMul());$('fuelText').textContent=Math.round(fuel)+'%';if(fuel<=0)speed=Math.max(0,speed-dt*22);if(missionMode===2&&fuel>0)missionCount+=dt;if(missionMode===3&&damage>=100)missionCount+=dt;let missionDone=missionMode===1?dist>=1:missionMode===2?missionCount>=120:missionMode===3?missionCount>=60:false;$('missionText').textContent=missionMode===0?'Free Drive':missionDone?'COMPLETE ✓':missionMode===1?dist.toFixed(2)+' / 1 km':missionMode===2?Math.floor(missionCount)+' / 120 sec':Math.floor(missionCount)+' / 60 sec';worldDistance+=speed*dt*.36;
  const oldLevel=level;level=Math.min(10,Math.floor(dist)+1);
  if(level!==oldLevel){challengeIndex=Math.min(9,level-1);challengeProgress=0;challengeRewarded=false;levelStartDist=dist;levelStartDrift=driftScore;nearMisses=0;updateChallengeHud()}
  // curve illusion: bend the entire road scenery gently while driving
  curveTimer-=dt;if(curveTimer<=0){curveTarget=(Math.random()-.5)*.65;curveTimer=3+Math.random()*4}curve+=(curveTarget-curve)*dt*.18;
  for(let i=0;i<roadSegments.length;i++){let g=roadSegments[i];g.position.z+=speed*dt*.68;if(g.position.z>30)g.position.z-=roadSegments.length*45;g.position.x=Math.sin((worldDistance*.002)+i*.22)*curve*4}
  for(let o of decor){o.position.z+=speed*dt*.68;if(o.position.z>25){o.position.z=-330-Math.random()*80; if(Math.abs(o.position.x)<15)o.position.x=(o.position.x<0?-1:1)*(17+Math.random()*35)}}
+ // Endless streetlight loop: recycle every lamp at a fixed interval so the road
+ // remains illuminated continuously, with no gaps or end to the lighting.
+ for(const lamp of (window.streetLights||[])){
+   lamp.group.position.z+=speed*dt*.68;
+   if(lamp.group.position.z>25)lamp.group.position.z-=378;
+ }
+ // Recycle the speed breaker endlessly; a real bump feel: car hops up,
+ // speed drops and the chase camera shakes, so it actually feels like a
+ // speed breaker when you drive over it. Interval = 500 m (900 world units).
+ for(const bump of speedBreakers){
+   const previousZ=bump.position.z;
+   bump.position.z+=speed*dt*.68;
+   if(!bump.userData.hit && previousZ<player.position.z+0.8 && bump.position.z>=player.position.z+0.8){
+     bump.userData.hit=true;
+     if(speed>0){
+       speed*=.91;                             // gentle slow-down, normal-size breaker
+       cameraShake=Math.min(.5,cameraShake+.22); // mild shake on impact
+       player.position.y=.12;                   // small car hop over the hump
+       toast('SPEED BREAKER · 500 m · slow down');
+     }
+   }
+   // settle the bounce back down after the hump
+   if(player.position.y>0)player.position.y=Math.max(0,player.position.y-dt*1.8);
+   if(bump.position.z>25){bump.position.z-=900;bump.userData.hit=false;}
+ }
  // Toll plaza payment: each gantry charges once as the car passes it.
  for(const gate of tollGates){
   if(gate.position.z>player.position.z-1.5&&gate.position.z<player.position.z+1.5&&!gate.userData.paid){
-   gate.userData.paid=true;cash=Math.max(0,cash-100);updateCareer();toast('Highway toll paid: ₹100');
+   gate.userData.paid=true;toast('Highway toll gate passed');
   }
   if(gate.position.z>26)gate.userData.paid=false;
  }
@@ -703,18 +1192,40 @@ function update(dt){
   }
   policeCar.position.z-=dt*(7+speed*.025);policeCar.position.x+=(player.position.x-policeCar.position.x)*dt*.12;
   if(policeCar.position.z<-220)policeCar.position.z=22;
+  // Crash into police car too — every vehicle is now collidable.
+  if(policeCar){
+   const dz=Math.abs(policeCar.position.z-player.position.z),dx=Math.abs(policeCar.position.x-player.position.x);
+   if(dz<3.0&&dx<2.0){damage=Math.max(0,damage-30*armorMul());$('damageText').textContent=Math.round(damage)+'%';speed*=.5;cameraShake=Math.min(1.4,cameraShake+.6);policeCar.position.z=-200;if(damage<=0){finish(true);return}}
+  }
  }
  if(rivalActive&&scene){
   if(!rivalCar){rivalCar=createCar(0x23a8c9,true);rivalCar.scale.setScalar(.94);scene.add(rivalCar);rivalCar.position.set(-5,0,-18);}
   rivalCar.position.z+=dt*(speed*.58+8);rivalCar.position.x=Math.sin(worldDistance*.018)*5;
   if(rivalCar.position.z>18)rivalCar.position.z=-160;
+  // Crash into the rival car too.
+  if(rivalCar){
+   const dz=Math.abs(rivalCar.position.z-player.position.z),dx=Math.abs(rivalCar.position.x-player.position.x);
+   if(dz<3.0&&dx<2.0){damage=Math.max(0,damage-30*armorMul());$('damageText').textContent=Math.round(damage)+'%';speed*=.5;cameraShake=Math.min(1.4,cameraShake+.6);rivalCar.position.z=-160;if(damage<=0){finish(true);return}}
+  }
  }
  for(let i=traffic.length-1;i>=0;i--){let c=traffic[i];c.g.position.z+=(speed-c.speed)*dt*.68;if(c.g.position.z>15){scene.remove(c.g);traffic.splice(i,1);continue}
+   // Hit-box sizes scale per vehicle type so every traffic vehicle (car, bus,
+   // truck, auto, bike) can be crashed into — not just the default car size.
+   const kind=c.g.userData.kind||'CAR';
+   const dzHit=kind==='BUS'?4.0:kind==='TRUCK'?3.6:kind==='AUTO'?2.2:kind==='BIKE'?1.8:2.8;
+   const dxHit=kind==='BUS'?2.2:kind==='TRUCK'?2.2:kind==='AUTO'?1.4:kind==='BIKE'?1.1:1.7;
    const dz=Math.abs(c.g.position.z-player.position.z),dx=Math.abs(c.g.position.x-player.position.x);
-   if(dz<2.8&&dx<1.65){damage=Math.max(0,damage-28);$('damageText').textContent=Math.round(damage)+'%';speed*=.55;if(damage<=0){finish(true);return}}
+   if(dz<dzHit&&dx<dxHit){
+     const dmg=(kind==='BUS'?42:kind==='TRUCK'?40:kind==='BIKE'?22:kind==='AUTO'?26:32)*armorMul();
+     damage=Math.max(0,damage-dmg);$('damageText').textContent=Math.round(damage)+'%';speed*=.5;
+     cameraShake=Math.min(1.4,cameraShake+.6);
+     toast(kind+' CRASH!  -'+dmg+'% condition');
+     scene.remove(c.g);traffic.splice(i,1);
+     if(damage<=0){finish(true);return}continue;
+   }
    if(c.g.position.z>player.position.z+2.9&&c.g.position.z<player.position.z+4.2&&dx<2.5&&lastNearMiss!==i){nearMisses++;lastNearMiss=i}
  }
- if(Math.abs(player.position.x)>9.8&&speed>75){damage=Math.max(0,damage-dt*1.8);$('damageText').textContent=Math.round(damage)+'%';speed*=Math.max(.82,1-dt*.7*difficultySettings[difficulty].edgePenalty);if(Math.abs(player.position.x)>10.65&&speed>120&&difficulty!=='easy'){finish(true);return}}
+ if(Math.abs(player.position.x)>9.8&&speed>75){damage=Math.max(0,damage-dt*1.8*armorMul());$('damageText').textContent=Math.round(damage)+'%';speed*=Math.max(.82,1-dt*.7*difficultySettings[difficulty].edgePenalty);if(Math.abs(player.position.x)>10.65&&speed>120&&difficulty!=='easy'){finish(true);return}}
  if(drifting&&Math.abs(steer)>.12&&speed>40)driftScore+=dt*speed*.55;
  // follow camera, with a mild speed-dependent pullback
  let camTarget,lookTarget;
@@ -728,9 +1239,20 @@ function update(dt){
    camTarget=new THREE.Vector3(player.position.x+7,4.1,8.5);lookTarget=new THREE.Vector3(player.position.x,1,-15);
  }
  camera.position.lerp(camTarget,1-Math.pow(.001,dt));camera.lookAt(lookTarget);
+ // Apply the queued camera shake (from speed breaker / crash bumps) and decay it.
+ if(cameraShake>0){
+   camera.position.x+=(Math.random()-.5)*cameraShake*.35;
+   camera.position.y+=(Math.random()-.5)*cameraShake*.25;
+   cameraShake=Math.max(0,cameraShake-dt*1.6);
+ }
  // wheel/road lighting state
  renderer.toneMappingExposure=boosting?1.28:1.18;
  $('speed').textContent=Math.round(kmh);$('fuelText').textContent=Math.round(fuel)+'%';$('damageText').textContent=Math.round(damage)+'%';$('distance').textContent=dist.toFixed(2);$('level').textContent=level;$('nitroText').textContent=Math.round(nitro)+'%';$('nitroBar').style.width=nitro+'%';$('mode').textContent='CAM '+cameraModes[cameraMode]+' · '+difficultySettings[difficulty].label+' · '+(drifting?'DRIFT '+Math.floor(driftScore)+' PTS':boosting?'NITRO BOOST':'3D DRIVE');
+ // Track personal bests for milestone-based car unlocks (no cash anywhere).
+ if(kmh>topSpeed)topSpeed=kmh;
+ if(driftScore>bestDrift)bestDrift=driftScore;
+ if(nearMisses>bestOvertakes)bestOvertakes=nearMisses;
+ checkMilestones();
  updateChallenge(dt,kmh);
  if(level!==Math.min(10,Math.floor(dist)+1)){level=Math.min(10,Math.floor(dist)+1)}
  if(dist>=10)finish(false);
